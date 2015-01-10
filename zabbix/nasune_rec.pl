@@ -2,7 +2,7 @@
 
 my $nasune_addr = '192.168.21.10';
 my $datafile    = '/tmp/zabbix_nasune.dat';
-my $curl = 'curl -s "http://192.168.21.10:64210/status/boxStatusListGet"';
+my $curl = 'curl -s "http://".$nasune_addr.":64210/status/boxStatusListGet"';
 
 my $cmd,$recording;
 open(CMD, "$curl |");
