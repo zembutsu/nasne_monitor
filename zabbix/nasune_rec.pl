@@ -10,7 +10,10 @@ open(CMD, "$curl |");
 	$recording = 1 if ($cmd =~ /(tvTimerInfoStatus)/);
 close(CMD);
 
-exit if(!$recording);
+if(!$recording) {
+        unlink $datafile;
+        exit;
+}
 
 my $curl	= 'curl -s "http://'.$nasune_addr.':64210/status/boxStatusListGet"';
 my $cmd, $rec, $network, $transport, $service;
