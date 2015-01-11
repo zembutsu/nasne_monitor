@@ -7,7 +7,7 @@ my $curl = 'curl -s "http://".$nasune_addr.":64210/status/boxStatusListGet"';
 my $cmd,$recording;
 open(CMD, "$curl |");
 	$cmd = <CMD>;
-	$recording = 1 if ($cmd =~ /(tvTimerInfoStatus)/);
+	$recording = 1 if  ($cmd !~ /("nowId": "")/);
 close(CMD);
 
 if(!$recording) {
@@ -43,7 +43,7 @@ open(CMD, "$curl |");
 	$cmd = <CMD>;
 
 	$channel = $2   if ($cmd =~ /("serviceName": ")(.*?)(\")/);
-	$title = $2.$3  if ($cmd =~ /("title": ")(.*?)(」)/);
+	$title = $	if ($cmd =~ /("title": ")(.*?)(\")/);
 	$desc = $2      if ($cmd =~ /("description": ")(.*?)(\")/);
 	$date = $2      if ($cmd =~ /("startDateTime": ")(.*?)(\")/);
 	$year   = substr($date, 0, 4);
